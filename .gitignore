@@ -3,7 +3,7 @@ server/config/config.json
 
 ## user files and folders
 playground/
-server/public
+# server/public
 server/routes/images.js
 # config/
 server/views

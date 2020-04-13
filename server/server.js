@@ -26,7 +26,6 @@ const app = express();
 app.use(cors);
 
 const port = process.env.PORT;
-// const port = 3001;
 
 //configuration
 // console.log(`Application Name: ${config.get('name')}`);
@@ -35,9 +34,10 @@ const port = process.env.PORT;
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
+app.use(express.static('../public', {index: 'index.html'}))
 
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 //routes
 app.use('/api/courses', courses); // all endpoints related to api/courses , use the courses router
@@ -46,7 +46,7 @@ app.use('/api/projects', projects);
 app.use('/api/skills', skills);
 app.use('/api/users', users);
 app.use('/api' , swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-// app.use('/', images);
+
 
 // app.use(logger);
 
