@@ -5,7 +5,7 @@ server/config/config.json
 playground/
 server/public
 server/routes/images.js
-config/
+# config/
 server/views
 notes.js
 zz.backup/
