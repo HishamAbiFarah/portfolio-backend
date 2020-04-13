@@ -25,8 +25,8 @@ const app = express();
 //prevent CORS errors
 app.use(cors);
 
-// const port = process.env.PORT;
-const port = 3001;
+const port = process.env.PORT;
+// const port = 3001;
 
 //configuration
 // console.log(`Application Name: ${config.get('name')}`);
