@@ -6,7 +6,8 @@ var { User } = require('./../models/user');
 var { authenticate } = require('./../middleware/authenticate');
 
 // new user route
-router.post('/users', (req, res) => {
+// localhost:3001/api/users
+router.post('/a', (req, res) => {
   var body = _.pick(req.body, ['email', 'password', 'phone']);
   var user = new User(body);
 
@@ -20,12 +21,12 @@ router.post('/users', (req, res) => {
 });
 
 //get user route -- login
-router.get('/users/me', authenticate, (req, res) => {
+router.get('/', authenticate, (req, res) => {
   res.send(req.user);
 });
 
 //user login route
-router.post('/users/login', (req, res) => {
+router.post('/', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
 
   User.findByCredentials(body.email, body.password).then((user) => {

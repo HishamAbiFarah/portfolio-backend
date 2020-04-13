@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { Skill, validate } = require('../models/skill');
+const { authenticate } =  require('../middleware/authenticate');
+
+//todo handle res.json if skills is empty
 
 router.get('/', async (req, res) => {
-
     const skills = await Skill
         .find()
         .select({ name: 1, date: 1 })
@@ -19,22 +21,21 @@ router.get('/', async (req, res) => {
             page
         } else {
             return res.json({
-                "status" : 204,
+                "status": 204,
                 "message": "end of records reached",
                 "skills": []
             });
         }
     }
     res.status(200).json({
-        "message" : "success",
-        "status" : 200,
-        "totalRecords" : skills.length,
+        "message": "success",
+        "status": 200,
+        "totalRecords": skills.length,
         "page": page,
         "pageCount": pageCount,
         "skills": skills.slice(page * 5 - 5, page * 5)
     });
 });
-
 
 // router.get('/', async (req, res) => {
 //     const skills = await Skill
@@ -45,7 +46,7 @@ router.get('/', async (req, res) => {
 //     res.status(200).send(skills);
 // });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -70,17 +71,33 @@ router.post('/', async (req, res) => {
     // }
 });
 
-router.delete('/:id', (req, res) => {
+
+// recheck
+router.delete('/:id', authenticate , async (req, res) => {
+
+    const skill = await Skill.findByIdAndRemove(req.params.id)
+    if (!skill) return res.status(404).send('The skill with the given ID was not found.');
+    res.send(skill);
 
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate , async (req, res) => {
+    const { error } = validate(req.body)
+    if (error) return res.status(400).send(error.details[0].message);
 
+    const skill = await Skill.findByIdAndUpdate(req.params.id, {
+        name: req.body.name
+    }, { new: true })
+
+    if (!skill) return res.status(404).send('The skill with the given ID was not found.');
+
+    res.send(skill);
 });
 
-router.get('/:id', (req, res) => {
-
+router.get('/:id', async (req, res) => {
+    const skill = await Skill.findById(req.params.id)
+    if (!skill) return res.status(404).send('The skill with the given ID was not found.');
+    res.send(skill);
 });
-
 
 module.exports = router;

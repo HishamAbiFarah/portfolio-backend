@@ -1,9 +1,9 @@
 require('./config/config');
 require('./db/mongoose');
 
-// const config = require('config');
 const express = require('express');
 
+// Routes
 const courses = require('./routes/courses');
 const categories = require('./routes/categories');
 const users = require('./routes/users');
@@ -11,16 +11,22 @@ const projects = require('./routes/projects');
 const skills = require('./routes/skills');
 const images = require('./routes/images');
 
+// Middleware
 const helmet = require('helmet')
 const morgan = require('morgan');
 const cors = require('./middleware/cors');
+
+// Swagger 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 
 //prevent CORS errors
 app.use(cors);
 
-const port = process.env.PORT;
+// const port = process.env.PORT;
+const port = 3001;
 
 //configuration
 // console.log(`Application Name: ${config.get('name')}`);
@@ -38,9 +44,9 @@ app.use('/api/courses', courses); // all endpoints related to api/courses , use 
 app.use('/api/categories', categories);
 app.use('/api/projects', projects);
 app.use('/api/skills', skills);
-app.use('/users', users);
-app.use('/api/images' , images);
-app.use('/' , images);
+app.use('/api/users', users);
+app.use('/api/images', images);
+app.use('/' , swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // app.use(logger);
 
