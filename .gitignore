@@ -2,5 +2,5 @@ node_modules/
 server/config/config.json
 
 ## user files and folders
-playground/
+playground/index.js
 notes.js
