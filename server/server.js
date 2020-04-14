@@ -10,7 +10,6 @@ const users = require('./routes/users');
 const projects = require('./routes/projects');
 const skills = require('./routes/skills');
 const index = require('./routes/index');
-const images = require('./routes/images'); 
 
 // Middleware
 const helmet = require('helmet')
@@ -43,7 +42,6 @@ app.use('/api/skills', skills);
 app.use('/api/users', users);
 app.use('/api' , swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/' , index);
-
 
 // app.use(logger);
 

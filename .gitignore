@@ -4,9 +4,9 @@ server/config/config.json
 ## user files and folders
 playground/
 # server/public
-server/routes/images.js
+# server/routes/images.js
 # config/
-server/views
+# server/views
 notes.js
 zz.backup/
 ## temp ignores
