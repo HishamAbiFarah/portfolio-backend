@@ -9,4 +9,4 @@ playground/
 # server/views
 notes.js
 zz.backup/
-## temp ignores
+server/routes/courses.js

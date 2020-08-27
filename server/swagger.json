@@ -147,7 +147,7 @@
           ]
         }
       },
-      "/project/{projectId}": {
+      "/projects/{projectId}": {
         "get": {
           "tags": [
             "projects"
@@ -163,9 +163,9 @@
               "in": "path",
               "description": "ID of project to return",
               "required": true,
-              "type": "integer",
-              "format": "int64"
-            }
+              "type": "string",
+              "format": "ObjectId"
+            } 
           ],
           "responses": {
             "200": {
