@@ -1,0 +1,1145 @@
+define({ "api": [
+  {
+    "version": "1.0.0",
+    "type": "delete",
+    "url": "/categories/:id",
+    "title": "Remove a category",
+    "group": "Categories",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>of category</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 403 Unauthorized",
+          "type": "json"
+        },
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/categories.js",
+    "groupTitle": "Categories",
+    "name": "DeleteCategoriesId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/categories",
+    "title": "List all categories",
+    "group": "Categories",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "categories.id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "categories.name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n     \"_id\": \"5dff620e7b97a5264ccf5803\",\n     \"name\": \"test category\",\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/categories.js",
+    "groupTitle": "Categories",
+    "name": "GetApiCategories"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/categories/:id",
+    "title": "Find a Category",
+    "group": "Categories",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Category Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5dff620e7b97a5264ccf5803\",\n    \"name\": \"test category\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Category not found",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Find error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/categories.js",
+    "groupTitle": "Categories",
+    "name": "GetApiCategoriesId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/categories",
+    "title": "Create a new category",
+    "group": "Categories",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"name\" : \"test category\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"5f4ced2cf8b0640d243ba3ca\",\n     \"name\": \"test post\",\n     \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Register error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/categories.js",
+    "groupTitle": "Categories",
+    "name": "PostApiCategories"
+  },
+  {
+    "version": "1.0.0",
+    "type": "put",
+    "url": "api/categories/:id",
+    "title": "Update a category",
+    "group": "Categories",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"name\": \"Category name\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Update error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/categories.js",
+    "groupTitle": "Categories",
+    "name": "PutApiCategoriesId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "delete",
+    "url": "/projects/:id",
+    "title": "Remove a project",
+    "group": "Projects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>of project</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 403 Unauthorized",
+          "type": "json"
+        },
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/projects.js",
+    "groupTitle": "Projects",
+    "name": "DeleteProjectsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/projects",
+    "title": "List all projects",
+    "group": "Projects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "page",
+            "optional": false,
+            "field": "page",
+            "description": "<p>number to get projects list</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>request success</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>request status code</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalRecords",
+            "description": "<p>request total number of records</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>request current page</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "pageCount",
+            "description": "<p>request number of pages</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "projects",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "projects._id",
+            "description": "<p>Project id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "projects.title",
+            "description": "<p>Project title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "projects.numberOfUpdates",
+            "description": "<p>Project number of updates</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "category",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category._id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n \"message\": \"success\",\n \"status\": 200,\n \"totalRecords\": 2,\n \"page\": 1,\n \"pageCount\": 1,\n \"projects\": [\n     {\n         \"numberOfUpdates\": 0,\n         \"_id\": \"5dff30794988e900c4ddec1f\",\n         \"title\": \"Portfolio Backend in node.js\",\n         \"category\": {\n             \"_id\": \"5dff30304988e900c4ddec1c\",\n             \"name\": \"backend web development\"\n         }\n     },\n     {\n         \"numberOfUpdates\": 0,\n         \"_id\": \"5dff30b94988e900c4ddec22\",\n         \"title\": \"Dinvo App\",\n         \"category\": {\n             \"_id\": \"5dff30414988e900c4ddec1e\",\n             \"name\": \"frontend mobile development\"\n         }\n     }\n ]\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/projects.js",
+    "groupTitle": "Projects",
+    "name": "GetApiProjects"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/projects/:id",
+    "title": "Find a project",
+    "group": "Projects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Project Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Project id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Project name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "skills.date",
+            "description": "<p>Creation Date of skill</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"numberOfUpdates\": 0,\n     \"_id\": \"5dff30794988e900c4ddec1f\",\n     \"title\": \"Portfolio Backend in node.js\",\n     \"category\": {\n         \"_id\": \"5dff30304988e900c4ddec1c\",\n         \"name\": \"backend web development\"\n }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Project not found",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Find error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/projects.js",
+    "groupTitle": "Projects",
+    "name": "GetApiProjectsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/projects",
+    "title": "Create a new project",
+    "group": "Projects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Project title</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n     \t\"title\" : \"test add\",\n\t    \"categoryId\" : \"5dff4b58925c0f1ce419f4cf\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "projects",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "projects._id",
+            "description": "<p>Project id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "projects.title",
+            "description": "<p>Project title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "projects.numberOfUpdates",
+            "description": "<p>Project number of updates</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "category",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category._id",
+            "description": "<p>Category id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.name",
+            "description": "<p>Category name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"numberOfUpdates\": 0,\n     \"_id\": \"5f4d216c4843152c98398b77\",\n     \"title\": \"test add\",\n     \"category\": {\n         \"_id\": \"5dff4b58925c0f1ce419f4cf\",\n         \"name\": \"test category\"\n     }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Register error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/projects.js",
+    "groupTitle": "Projects",
+    "name": "PostApiProjects"
+  },
+  {
+    "version": "1.0.0",
+    "type": "put",
+    "url": "api/projects/:id",
+    "title": "Update a skill",
+    "group": "Projects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Project id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n      \t\"title\" : \"edit project title,\n\t    \"numberOfUpdates\" : \"1\",\n\t    \"categoryId\" : \"5dff4b58925c0f1ce419f4cf\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Update error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/projects.js",
+    "groupTitle": "Projects",
+    "name": "PutApiProjectsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "delete",
+    "url": "/skills/:id",
+    "title": "Remove a skill",
+    "group": "Skills",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>of skill</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 403 Unauthorized",
+          "type": "json"
+        },
+        {
+          "title": "Delete error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/skills.js",
+    "groupTitle": "Skills",
+    "name": "DeleteSkillsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/skills",
+    "title": "List all skills",
+    "group": "Skills",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "page",
+            "optional": false,
+            "field": "page",
+            "description": "<p>number to get skills list</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "skills",
+            "description": "<p>list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "skills.id",
+            "description": "<p>Skill id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "skills.name",
+            "description": "<p>Skill name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "skills.date",
+            "description": "<p>Creation Date of skill</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n[{\n     \"_id\": \"5dff620e7b97a5264ccf5803\",\n     \"name\": \"test skill\",\n     \"date\": \"2019-12-22T12:31:10.647Z\"\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/skills.js",
+    "groupTitle": "Skills",
+    "name": "GetApiSkills"
+  },
+  {
+    "version": "1.0.0",
+    "type": "get",
+    "url": "api/skills/:id",
+    "title": "Find a skill",
+    "group": "Skills",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Skill Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Skill id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Skill name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "skills.date",
+            "description": "<p>Creation Date of skill</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5dff620e7b97a5264ccf5803\",\n    \"name\": \"test skill\",\n    \"date\": \"2019-12-22T12:31:10.647Z\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Skill not found",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Find error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/skills.js",
+    "groupTitle": "Skills",
+    "name": "GetApiSkillsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/skills",
+    "title": "Create a new skill",
+    "group": "Skills",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Skill name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"name\" : \"test skill\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Skill id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Skill name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "skills.date",
+            "description": "<p>Creation Date of skill</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"5f4ced2cf8b0640d243ba3ca\",\n     \"name\": \"test post\",\n     \"date\": \"2020-08-31T12:29:32.671Z\",\n     \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Register error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/skills.js",
+    "groupTitle": "Skills",
+    "name": "PostApiSkills"
+  },
+  {
+    "version": "1.0.0",
+    "type": "put",
+    "url": "api/skills/:id",
+    "title": "Update a skill",
+    "group": "Skills",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Skill id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Skill name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"name\": \"skill name\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Update error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/skills.js",
+    "groupTitle": "Skills",
+    "name": "PutApiSkillsId"
+  },
+  {
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/users",
+    "title": "Create a new user",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n    \"email\" : \"email@email.com\",\n\t    \"password\" : \"5dff4b5\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "users._id",
+            "description": "<p>User id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "users.email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "users.phone",
+            "description": "<p>User phone</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"_id\": \"5f4d24c9c101812450449ef3\",\n     \"email\": \"email@email.com\",\n     \"phone\": \"70992123\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Register error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/users.js",
+    "groupTitle": "Users",
+    "name": "PostApiUsers"
+  },
+  {
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/users",
+    "title": "Login a user",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n    \"email\" : \"email@email.com\",\n\t    \"password\" : \"5dff4b5\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String)",
+            "optional": false,
+            "field": "users.x-auth",
+            "description": "<p>User token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 200 OK\n{\n     \"x-auth\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGI1YWViNjEzYzMzMzBmZmNhODM4NDYiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTcyMTg3ODMwfQ.iR_WhrKIeLd5fReqFVhlGe1ssqUQ97tLVbqyArDO5Kc\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Login error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/users.js",
+    "groupTitle": "Users",
+    "name": "PostApiUsers"
+  }
+] });

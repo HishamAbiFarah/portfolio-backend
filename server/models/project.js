@@ -15,15 +15,15 @@ const projectSchema = mongoose.Schema({
         type: categorySchema,
         required: true
     },
-    tags: {
-        type: Array,
-        validate: {
-            validator: function (v) {
-                return v && v.length > 0;
-            },
-            message: "A project should have at least one tag"
-        }
-    },
+    // tags: {
+    //     type: Array,
+    //     validate: {
+    //         validator: function (v) {
+    //             return v && v.length > 0;
+    //         },
+    //         message: "A project should have at least one tag"
+    //     }
+    // },
     numberOfUpdates: {
         type: Number,
         required: true,

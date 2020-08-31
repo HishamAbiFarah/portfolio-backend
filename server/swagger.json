@@ -1,335 +1,831 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "description": "API endpoints to connect to database deployed on Heroku.",
-      "version": "1.0.0",
-      "title": "Hisham Abi Farah Portfolio Backend",
-      "contact": {
-        "email": "hisham.abi.farah@gmail.com"
+  "swagger": "2.0",
+  "info": {
+    "description": "API endpoints to connect to database deployed on Heroku.",
+    "version": "1.0.0",
+    "title": "Hisham Abi Farah Portfolio Backend",
+    "contact": {
+      "email": "hisham.abi.farah@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "hix-io.herokuapp.com/api",
+  "tags": [
+    {
+      "name": "projects",
+      "description": "Operations about projects"
+    },
+    {
+      "name": "skills",
+      "description": "Operations about skills"
+    },
+    {
+      "name": "categories",
+      "description": "Operations about categories"
+    },
+    {
+      "name": "users",
+      "description": "Operations about user"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/project": {
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Add a new project",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Project object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+
+        ]
       },
-      "license": {
-        "name": "Apache 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "put": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Update an existing project",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Project object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid category ID supplied"
+          },
+          "404": {
+            "description": "Project not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+
+        ]
       }
     },
-    "host": "hix-io.herokuapp.com/api",
-    "tags": [
-      {
-        "name": "projects",
-        "description": "Projects list"
-      },
-      {
-        "name": "skills",
-        "description": "Skills list"
-      },
-      {
-        "name": "categories",
-        "description": "Categories list"
-      },
-      {
-        "name": "users",
-        "description": "Operations about user"
-      }
-    ],
-    "schemes": [
-      "http",
-      "https"
-    ],
-    "paths": {
-      "/project": {
-        "post": {
-          "tags": [
-            "projects"
-          ],
-          "summary": "Add a new project",
-          "description": "",
-          "consumes": [
-            "application/json"
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Project object that needs to be added to the database",
-              "required": true,
-              "schema": {
+    "/projects": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "List Projects",
+        "description": "Page number can be supplied; if not defaults to page 1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "String",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
                 "$ref": "#/definitions/Project"
               }
             }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid input"
-            }
           },
-          "security": [
-
-          ]
+          "400": {
+            "description": "Invalid status value"
+          }
         },
-        "put": {
-          "tags": [
-            "projects"
-          ],
-          "summary": "Update an existing project",
-          "description": "",
-          "consumes": [
-            "application/json"
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Project object that needs to be updated",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/Project"
-              }
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid category ID supplied"
-            },
-            "404": {
-              "description": "Project not found"
-            },
-            "405": {
-              "description": "Validation exception"
-            }
-          },
-          "security": [
+        "security": [
 
-          ]
-        }
-      },
-      "/projects": {
-        "get": {
-          "tags": [
-            "projects"
-          ],
-          "summary": "List Projects",
-          "description": "Page number can be supplied; if not defaults to page 1",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "page number",
-              "required": false,
-              "type": "String",
-              "collectionFormat": "multi"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/Project"
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid status value"
-            }
-          },
-          "security": [
-
-          ]
-        }
-      },
-      "/projects/{projectId}": {
-        "get": {
-          "tags": [
-            "projects"
-          ],
-          "summary": "Find project by ID",
-          "description": "Returns a single project",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "projectId",
-              "in": "path",
-              "description": "ID of project to return",
-              "required": true,
-              "type": "string",
-              "format": "ObjectId"
-            } 
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "$ref": "#/definitions/Project"
-              }
-            },
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "Project not found"
-            }
-          },
-          "security": [
-            {
-              "api_key": []
-            }
-          ]
-        },
-        "delete": {
-          "tags": [
-            "projects"
-          ],
-          "summary": "Deletes a project",
-          "description": "",
-          "operationId": "deleteproject",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "api_key",
-              "in": "header",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "projectId",
-              "in": "path",
-              "description": "project id to delete",
-              "required": true,
-              "type": "integer",
-              "format": "int64"
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid ID supplied"
-            },
-            "404": {
-              "description": "project not found"
-            }
-          },
-          "security": [
-
-          ]
-        }
+        ]
       }
     },
-
-    "definitions": {
-      "Project": {
-        "type": "object",
-        "properties": {
-          "projectId": {
+    "/projects/{projectId}": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Find project by ID",
+        "description": "Returns a single project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of project to return",
+            "required": true,
             "type": "string",
             "format": "ObjectId"
+          } 
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
           },
-          "title": {
-            "type": "string"
+          "400": {
+            "description": "Invalid ID supplied"
           },
-          "numberOfUpdates": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "category": {
-            "$ref": "#/definitions/Category"
+          "404": {
+            "description": "Project not found"
           }
         },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "Category": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "ObjectId"
-          },
-          "name": {
-            "type": "string"
+        "security": [
+          {
+            "api_key": []
           }
-        },
-        "xml": {
-          "name": "Category"
-        }
+        ]
       },
-      "Skill": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "ObjectId"
-          },
-          "name": {
+      "delete": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Deletes a project",
+        "description": "",
+        "operationId": "deleteproject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
             "type": "string"
-          }
-        },
-        "xml": {
-          "name": "Skill"
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "project id to delete",
+            "required": true,
             "type": "integer",
             "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
           },
-          "username": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "userStatus": {
-            "type": "integer",
-            "format": "int32",
-            "description": "User Status"
+          "404": {
+            "description": "project not found"
           }
         },
-        "xml": {
-          "name": "User"
-        }
+        "security": [
+
+        ]
+      }
+    },
+    "/category": {
+      "post": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Add a new category",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Category object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+
+        ]
       },
-      "EndPaginationResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "format": "int32"
+      "put": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Update an existing category",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Category object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid category ID supplied"
           },
-          "message": {
+          "404": {
+            "description": "Category not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "List Categories",
+        "description": "Page number can be supplied; if not defaults to page 1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "String",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Find category by ID",
+        "description": "Returns a single category",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "ID of categoty to return",
+            "required": true,
+            "type": "string",
+            "format": "ObjectId"
+          } 
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Deletes a category",
+        "description": "",
+        "operationId": "deletecategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
             "type": "string"
           },
-          "data": {
-            "type": "array"
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "category id to delete",
+            "required": true,
+            "type": "string",
+            "format": "ObjectId"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "project not found"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/skill": {
+      "put": {
+        "tags": [
+          "skills"
+        ],
+        "summary": "Update an existing skill",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Project object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid category ID supplied"
+          },
+          "404": {
+            "description": "Skill not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/skills": {
+      "post": {
+        "tags": [
+          "skills"
+        ],
+        "summary": "Add a new skill",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Skill object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Skill"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skill"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-auth": []
+          }
+        ],
+        "components": {
+          "securitySchemes": {
+            "ApiKeyAuth": {
+              "type": "apiKey",
+              "in": "header",
+              "name": "x-auth"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "skills"
+        ],
+        "summary": "List Skills",
+        "description": "Page number can be supplied; if not defaults to page 1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page number",
+            "required": false,
+            "type": "String",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/skills/{skillId}": {
+      "get": {
+        "tags": [
+          "skills"
+        ],
+        "summary": "Find skill by ID",
+        "description": "Returns a single skill",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "ID of skill to return",
+            "required": true,
+            "type": "string",
+            "format": "ObjectId"
+          } 
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Skill"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Skill not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "skills"
+        ],
+        "summary": "Deletes a skill",
+        "description": "",
+        "operationId": "deleteskill",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "skill id to delete",
+            "required": true,
+            "type": "string",
+            "format": "ObjectId"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "skill not found"
+          }
+        },
+        "security": [
+
+        ]
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user by user name",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
           }
         }
       }
     }
+  },
+
+  "definitions": {
+    "Project": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "format": "ObjectId"
+        },
+        "title": {
+          "type": "string"
+        },
+        "numberOfUpdates": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        }
+      },
+      "xml": {
+        "name": "Order"
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "ObjectId"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Category"
+      }
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "ObjectId"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Skill"
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "EndPaginationResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array"
+        }
+      }
+    }
   }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "Hisham Abi Farah Portfolio Backend",
+    "version": "1.0.0",
+    "description": "Hisham Abi Farah Portfolio Backend List endpoints",
+    "template": {
+        "forceLanguage": "en"
+    }
+}

@@ -43,8 +43,12 @@ app.use('/api/users', users);
 app.use('/api' , swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/' , index);
 
-// app.use(logger);
+// http://localhost:3002/apidoc/
+// apidoc -i server/ -o apidoc/
+app.use('/apidoc' , express.static('../apidoc'));
 
+
+// app.use(logger);
 // app.set('DEBUG','app:startup');
 // app.set('env','development');
 
